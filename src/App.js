@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Cart from "./components/Cart/Cart";
-
+import ContextProvider from "./store/ContextProvider";
 import Header from "./components/Layout/Header";
 import Meals from "./components/Meals/Meals";
 
@@ -15,13 +15,13 @@ function App() {
   };
 
   return (
-    <React.Fragment>
+    <ContextProvider>
       {modalCart && <Cart onClose={hideModalCart} />}
       <Header onOpen={openModalCart} />
       <main>
         <Meals />
       </main>
-    </React.Fragment>
+    </ContextProvider>
   );
 }
 

@@ -12,7 +12,8 @@ const ModalOverlay = (props) => (
   </div>
 );
 
-const portalElement = document.getElementById("overlay");
+const portalElement = document.getElementById("overlay"); //get element by id for portal into index.html
+
 const Modal = (props) => {
   return (
     <Fragment>

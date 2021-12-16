@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import classes from "./MealItem.module.css";
 import MealItemForm from "./MealItemForm";
-import CartContext from "../../store/create-context";
 
 const MealItem = (props) => {
   return (
@@ -10,7 +9,7 @@ const MealItem = (props) => {
         <div>
           <h3>{props.name}</h3>
           <div className={classes.description}>{props.description}</div>
-          <div className={classes.price}>20</div>
+          <div className={classes.price}>{props.price.toFixed(2)} $</div>
         </div>
         <div>
           <MealItemForm />

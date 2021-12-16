@@ -1,27 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
+
 import Cart from "./components/Cart/Cart";
-import ContextProvider from "./store/ContextProvider";
 import Header from "./components/Layout/Header";
 import Meals from "./components/Meals/Meals";
 
 function App() {
-  const [modalCart, setModalCart] = useState(false);
-
-  const openModalCart = () => {
-    setModalCart(true);
-  };
-  const hideModalCart = () => {
-    setModalCart(false);
-  };
+  const showModalSelector = useSelector((state) => state.ui.showModal);
 
   return (
-    <ContextProvider>
-      {modalCart && <Cart onClose={hideModalCart} />}
-      <Header onOpen={openModalCart} />
+    <>
+      {showModalSelector && <Cart />}
+      <Header />
       <main>
         <Meals />
       </main>
-    </ContextProvider>
+    </>
   );
 }
 

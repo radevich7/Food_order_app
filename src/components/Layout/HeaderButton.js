@@ -1,9 +1,14 @@
 import CartIcon from "../Cart/CartIcon";
 import classes from "./HeaderButton.module.css";
-
+import { useDispatch } from "react-redux";
+import { uiActions } from "../../store/uiSlice";
 const HeaderButton = (props) => {
+  const dispatch = useDispatch();
+  const openHandler = () => {
+    dispatch(uiActions.toggleModal());
+  };
   return (
-    <button className={classes.button} onClick={props.onOpen}>
+    <button className={classes.button} onClick={openHandler}>
       <span className={classes.icon}>
         <CartIcon />
       </span>

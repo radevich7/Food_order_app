@@ -1,10 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { cloneElement } from "react";
 
 const cartSlice = createSlice({
   name: "cart",
   initialState: {
     items: [],
     totalAmount: 0,
+    totalQuantity: 0,
     status: "",
     cartChanged: "false",
   },
@@ -13,43 +15,47 @@ const cartSlice = createSlice({
       const newItem = action.payload;
       const existingItem = state.items.find((item) => item.id === newItem.id);
       if (!existingItem) {
+        // For new item push into items array:
         state.items.push({
           id: newItem.id,
           name: newItem.name,
           description: newItem.description,
           price: newItem.price,
-          quantity: 1,
+          quantity: newItem.quantity,
           totalPrice: newItem.price,
         });
+        // Total Amount
+        state.totalAmount = newItem.quantity * newItem.price;
+        // Quantity
+        state.totalQuantity = state.totalQuantity + newItem.quantity;
       } else {
+        // For existing items:
         existingItem.quantity++;
         existingItem.totalPrice =
           existingItem.totalPrice + newItem.price * newItem.quantity;
+        state.totalAmount =
+          state.totalAmount + newItem.price * newItem.quantity;
+        state.totalQuantity = state.totalQuantity + newItem.quantity;
       }
     },
 
     removeItemFromCart(state, action) {
       const id = action.payload;
       const existingItem = state.items.find((item) => item.id === id);
-      console.log(existingItem);
+      state.totalQuantity--;
+
+      if (existingItem.quantity === 1) {
+        // if there is only one element in the items array
+        state.items = state.items.filter((item) => item.id !== id);
+        state.totalAmount = state.totalAmount - existingItem.price;
+      } else {
+        // more than 1 element in items array
+        state.totalAmount = state.totalAmount - existingItem.price;
+        existingItem.quantity--;
+        existingItem.totalPrice = existingItem.totalPrice - existingItem.price;
+      }
     },
   },
-  // extraReducers: {
-  //   // GET ALBUMS
-  //   [addItem.pending]: (state) => {
-  //     state.loading = true;
-  //     console.log("pending");
-  //   },
-  //   [addItem.fulfilled]: (state, { payload }) => {
-  //     state.loading = false;
-  //     state.albums = payload;
-  //     console.log("fulfilled");
-  //   },
-  //   [addItem.rejected]: (state) => {
-  //     state.loading = false;
-  //     console.log("rejected");
-  //   },
-  // },
 });
 
 export const cartActions = cartSlice.actions;

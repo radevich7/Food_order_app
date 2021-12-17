@@ -9,10 +9,9 @@ const Cart = (props) => {
   const dispatch = useDispatch();
 
   const cardItemsSelector = useSelector((state) => state.cart.items);
-  const totalPrice = cardItemsSelector
-    .map((val) => val.totalPrice)
-    .reduce((prev, cur) => prev + cur)
-    .toFixed(2);
+  const cartTotalAmountSelector = useSelector(
+    (state) => state.cart.totalAmount
+  );
 
   const closeModalHandler = () => {
     dispatch(uiActions.toggleModal());
@@ -23,6 +22,7 @@ const Cart = (props) => {
       <ul className={classes["cart-items"]}>
         {cardItemsSelector.map((item) => (
           <CartItem
+            id={item.id}
             key={item.id}
             price={item.price}
             totalPrice={item.totalPrice}
@@ -33,7 +33,7 @@ const Cart = (props) => {
       </ul>
       <div className={classes.total}>
         <span>Total Amount</span>
-        <span>{totalPrice}</span>
+        <span>${cartTotalAmountSelector.toFixed(2)}</span>
       </div>
       <div className={classes.actions}>
         <button className={classes["button--alt"]} onClick={closeModalHandler}>

@@ -7,6 +7,12 @@ const uiSlice = createSlice({
     toggleModal(state) {
       state.showModal = !state.showModal;
     },
+    showNotification(state, action) {
+      state.notification = {
+        status: action.payload.status,
+        message: action.payload.message,
+      };
+    },
   },
 });
 

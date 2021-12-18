@@ -7,8 +7,7 @@ const cartSlice = createSlice({
     items: [],
     totalAmount: 0,
     totalQuantity: 0,
-    status: "",
-    cartChanged: "false",
+    cartChanged: false,
   },
   reducers: {
     addItemToCart(state, action) {
@@ -37,6 +36,7 @@ const cartSlice = createSlice({
           state.totalAmount + newItem.price * newItem.quantity;
         state.totalQuantity = state.totalQuantity + newItem.quantity;
       }
+      state.cartChanged = true;
     },
 
     removeItemFromCart(state, action) {
@@ -54,6 +54,7 @@ const cartSlice = createSlice({
         existingItem.quantity--;
         existingItem.totalPrice = existingItem.totalPrice - existingItem.price;
       }
+      state.cartChanged = true;
     },
   },
 });
@@ -62,20 +63,3 @@ export const cartActions = cartSlice.actions;
 export default cartSlice;
 
 // // POST ALBUM THUNK
-// export const addItem = createAsyncThunk("addItem", async (cart) => {
-//   const response = await fetch(
-//     "https://radevich7-f924f-default-rtdb.firebaseio.com/cart.json",
-//     {
-//       method: "POST",
-//       header: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify(cart),
-//     }
-//   ).then((data) => data.json());
-//   if (!response) {
-//     throw new Error("Sending cart data failed");
-//   }
-//   return cart;
-// });
-// // item{title, id, quantity, totalPrice, price}

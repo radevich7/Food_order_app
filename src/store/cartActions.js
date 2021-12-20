@@ -17,7 +17,6 @@ export const fetchData = () => {
 
     try {
       const cartData = await sendRequest();
-      console.log(cartData);
       dispatch(
         cartActions.replaceCart({
           items: cartData.items || [],

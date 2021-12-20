@@ -4,11 +4,6 @@ import classes from "./CartItem.module.css";
 
 const CartItem = (props) => {
   const dispatch = useDispatch();
-  // key={item.id}
-  // price={item.price}
-  // totalPrice={item.totalPrice}
-  // quantity={item.quantity}
-  // name={item.name}
 
   const addItemHandler = (e) => {
     e.preventDefault();

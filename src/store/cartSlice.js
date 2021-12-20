@@ -24,7 +24,8 @@ const cartSlice = createSlice({
           totalPrice: newItem.price,
         });
         // Total Amount
-        state.totalAmount = newItem.quantity * newItem.price;
+        state.totalAmount =
+          state.totalAmount + newItem.quantity * newItem.price;
         // Quantity
         state.totalQuantity = state.totalQuantity + newItem.quantity;
       } else {

@@ -22,7 +22,6 @@ function App() {
 
     if (cart.cartChanged) {
       dispatch(sendCartData(cart));
-      console.log("running");
     }
   }, [cart, dispatch]);
 

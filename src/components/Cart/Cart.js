@@ -15,7 +15,9 @@ const Cart = (props) => {
     (state) => state.cart.totalAmount
   );
   let initialData = { items: [], totalAmount: 0, totalQuantity: 0 };
+
   const sendOrderHandler = () => {
+    if (cartTotalAmountSelector == 0) return;
     dispatch(
       sendCartData({
         initialData,
@@ -28,6 +30,7 @@ const Cart = (props) => {
     dispatch(uiActions.toggleModal());
     setOrderSent(false);
   };
+  console.log(cartTotalAmountSelector);
 
   return (
     <Modal onClose={closeModalHandler}>
@@ -53,7 +56,12 @@ const Cart = (props) => {
           Close
         </button>
         {!orderSent && (
-          <button className={classes.button} onClick={sendOrderHandler}>
+          <button
+            className={`${classes.button} ${
+              !cartTotalAmountSelector ? classes.btn_disabled : ""
+            }`}
+            onClick={sendOrderHandler}
+          >
             Order
           </button>
         )}

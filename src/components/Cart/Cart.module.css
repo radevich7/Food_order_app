@@ -44,3 +44,8 @@
   background-color: #8a2b06;
   color: white;
 }
+.actions .btn_disabled,
+.actions .btn_disabled:hover {
+  background-color: #d4c2bb;
+  border: aliceblue;
+}

@@ -26,3 +26,9 @@
     transform: translateY(0);
   }
 }
+
+@media (max-width: 560px) {
+  .meals {
+    margin: 3rem auto;
+  }
+}

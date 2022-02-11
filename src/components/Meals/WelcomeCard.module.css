@@ -17,3 +17,9 @@
   font-weight: bolder;
   margin-top: 0;
 }
+
+@media (max-width: 560px) {
+  .card p {
+    font-size: 0.8rem;
+  }
+}

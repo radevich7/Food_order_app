@@ -49,3 +49,9 @@
     transform: scale(1);
   }
 }
+
+@media (max-width: 560px) {
+  .button {
+    margin-right: 0;
+  }
+}

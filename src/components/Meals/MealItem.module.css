@@ -23,3 +23,16 @@
   color: #ad5502;
   font-size: 1.25rem;
 }
+
+@media (max-width: 560px) {
+  .meal_item h3 {
+    font-size: 1rem;
+  }
+  .description {
+    font-size: 0.9rem;
+  }
+  .price {
+    margin-top: 0.1rem;
+    font-size: 0.8rem;
+  }
+}

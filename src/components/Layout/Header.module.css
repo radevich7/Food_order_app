@@ -30,3 +30,12 @@
   object-fit: cover;
   transform: rotateZ(-5deg) translateY(-4rem) translateX(-1rem);
 }
+
+@media (max-width: 560px) {
+  .header h1 {
+    display: none;
+  }
+  .header {
+    justify-content: center;
+  }
+}

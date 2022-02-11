@@ -38,3 +38,9 @@
     transform: translateY(0);
   }
 }
+@media (max-width: 560px) {
+  .modal {
+    left: 0;
+    width: fit-content;
+  }
+}
